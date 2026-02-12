@@ -4,68 +4,74 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="pictures/Orta7.jpeg" type="image/x-icon" />
-
   <title>Öykü 💖 Ercan</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 </head>
 
 <body>
   <div class="bg-pattern"></div>
 
-  <!-- Sol üst: Gün sayacı + Albüm + Müzik -->
+  <!-- Sol üst sadece gün sayacı (Albüm burada yok) -->
   <div class="top-left-bar">
     <div class="counter-box counter-fixed">
       <span class="counter-number" id="days">0</span>
       <span class="counter-label">gündür birlikteyiz</span>
     </div>
-
-    <button class="album-icon-btn" id="album-icon-btn" aria-label="Albümü aç" title="Foto albümümüzü aç">
-      <svg class="album-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-        <circle cx="8.5" cy="8.5" r="1.5"></circle>
-        <polyline points="21 15 16 10 5 21"></polyline>
-      </svg>
-      <span class="album-icon-label">Albüm</span>
-    </button>
-
-    <!-- Müzik audio -->
-    <audio id="bg-music" loop>
-      <source src="music/Yalın - Sevgili Kalp Sancım.mp3" type="audio/mpeg" />
-    </audio>
   </div>
+
+  <!-- Müzik (dosya yolu doğru olmalı) -->
+  <audio id="bg-music" loop>
+    <source src="music/sevgili-kalp-sancim.mp3" type="audio/mpeg" />
+  </audio>
 
   <header class="hero">
     <h1>Öykü 💖 Ercan</h1>
+
+    <!-- Albüm butonu ORTADA -->
+    <button class="album-center-btn" id="album-icon-btn" type="button" aria-label="Albümü aç" title="Foto albümümüz">
+      <span class="album-center-ico">🖼️</span>
+      <span>Albüm</span>
+    </button>
   </header>
-
-  <!-- ALBÜM SLIDER OVERLAY -->
-  <div class="album-slider-overlay" id="album-slider-overlay" aria-hidden="true">
-    <button class="album-slider-close" id="album-slider-close" aria-label="Albümü kapat">&times;</button>
-
-    <div class="album-slider-shell">
-      <button class="album-slider-nav left" id="album-slider-prev" type="button" aria-label="Önceki">‹</button>
-
-      <div class="album-slider-content" id="album-slider-content">
-        <img id="album-slider-img" src="" alt="Anımız" />
-        <p id="album-slider-note"></p>
-      </div>
-
-      <button class="album-slider-nav right" id="album-slider-next" type="button" aria-label="Sonraki">›</button>
-    </div>
-
-    <div class="album-slider-counter" id="album-slider-counter">1 / 24</div>
-  </div>
 
   <!-- Müzik Butonu -->
   <button class="music-btn" id="music-btn" aria-label="Müzik" title="Müziği aç/kapat">💗</button>
   <div class="music-note" id="music-note">Bu şarkı çalınca hep bizi düşünüyorum 💗</div>
 
-  <!-- QA + Quiz yanyana -->
+  <!-- ===================== -->
+  <!-- ALBÜM OVERLAY (başta gizli) -->
+  <!-- ===================== -->
+  <div class="album-overlay" id="album-overlay" aria-hidden="true">
+    <button class="album-overlay-close" id="album-overlay-close" aria-label="Albümü kapat">&times;</button>
+
+    <div class="album-shell">
+      <button class="album-nav" id="album-prev" type="button" aria-label="Önceki">‹</button>
+
+      <div class="album-stage">
+        <img id="album-img" src="" alt="Anımız" />
+        <div class="album-note" id="album-note"></div>
+        <div class="album-count" id="album-count"></div>
+      </div>
+
+      <button class="album-nav" id="album-next" type="button" aria-label="Sonraki">›</button>
+    </div>
+  </div>
+
+  <!-- Lightbox KALABİLİR (istersen sonra kaldırırız) -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Kapat">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-img" />
+      <p class="lightbox-note" id="lightbox-note"></p>
+    </div>
+  </div>
+
+  <!-- QA + Quiz -->
   <div class="qa-quiz-row">
     <section class="section qa-section" id="qa">
       <h2>Bir sayı seç</h2>
@@ -115,6 +121,6 @@
     <p>Umarım beğenirsin, Seni çok seviyorum</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>
