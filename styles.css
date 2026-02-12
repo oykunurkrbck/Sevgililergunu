@@ -842,4 +842,70 @@ body{
   }
 }
 
+/* ==================================================
+   SADECE İSTENEN:
+   1) Okları büyüt (TEK takım)
+   2) Resim arkasındaki siyahlığı kaldır
+   3) Solda çıkan gereksiz ikinci ok takımını gizle
+   ================================================== */
+
+/* 1) Resmin arkasındaki siyahlığı kaldır (bu siyah alanı yapan şey) */
+#album-img{
+  background: transparent !important;
+}
+
+/* Bazı stillerde siyah background img yerine sarmalayıcıda olur */
+.album-stage,
+.album-shell,
+#album-overlay .album-stage,
+#album-overlay .album-shell{
+  background: transparent !important;
+}
+
+/* 2) SADECE id’li okları büyüt (asıl butonlar bunlar) */
+#album-prev,
+#album-next{
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+
+  width: 72px !important;
+  height: 72px !important;
+  border-radius: 22px !important;
+
+  background: rgba(255,255,255,0.96) !important;
+  border: 1px solid rgba(232,160,168,0.55) !important;
+  box-shadow: 0 16px 34px rgba(0,0,0,0.18) !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  font-size: 46px !important;  /* içindeki karakter büyüsün */
+  font-weight: 900 !important;
+  line-height: 1 !important;
+
+  cursor: pointer !important;
+  z-index: 10002 !important;
+}
+
+#album-prev{ left: 18px !important; }
+#album-next{ right: 18px !important; }
+
+/* 3) SOLDa çıkan gereksiz ok takımını gizle
+   (id taşımayan .album-nav butonları varsa onları kapatıyoruz) */
+.album-nav:not(#album-prev):not(#album-next){
+  display: none !important;
+}
+
+/* Mobilde de büyük kalsın */
+@media (max-width: 520px){
+  #album-prev, #album-next{
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 18px !important;
+    font-size: 42px !important;
+  }
+}
+
+
 
