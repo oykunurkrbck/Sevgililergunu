@@ -549,3 +549,18 @@ body{
   padding: 28px 16px 34px;
   color: var(--text-soft);
 }
+.album-text-btn {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #c77b83;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s;
+}
+
+.album-text-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
