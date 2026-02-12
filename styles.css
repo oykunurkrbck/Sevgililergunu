@@ -617,3 +617,105 @@ body{
   max-height: 70vh !important;
   object-fit: contain !important;
 }
+
+/* =========================================
+   ALBUM OVERLAY -> LIGHTBOX LOOK (SAFE OVERRIDE)
+   ========================================= */
+
+/* overlay: karart + ortala */
+#album-overlay,
+.album-overlay{
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+  background: rgba(0,0,0,0.55) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 18px !important;
+  overflow: hidden !important; /* sayfa kaymasın */
+}
+
+/* açıkken görün */
+#album-overlay.open,
+.album-overlay.open{
+  display: flex !important;
+}
+
+/* beyaz kart */
+#album-overlay .album-shell,
+.album-overlay .album-shell{
+  position: relative !important;
+  width: min(980px, 92vw) !important;
+  max-height: 86vh !important;
+
+  background: rgba(255,255,255,0.96) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25) !important;
+
+  padding: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+
+/* foto + yazı alanı */
+#album-overlay .album-stage,
+.album-overlay .album-stage{
+  width: 100% !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+/* foto */
+#album-overlay #album-img,
+.album-overlay #album-img,
+#album-overlay .album-stage img,
+.album-overlay .album-stage img{
+  display: block !important;
+  width: 100% !important;
+  max-height: 68vh !important;
+  object-fit: contain !important;
+  border-radius: 16px !important;
+  background: #000 !important;
+}
+
+/* alt yazı (not) */
+#album-overlay #album-note,
+.album-overlay #album-note{
+  width: 100% !important;
+  margin-top: 12px !important;
+  color: #4a3f3a !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+}
+
+/* sayaç (21 / 24) */
+#album-overlay #album-count,
+.album-overlay #album-count{
+  margin-top: 6px !important;
+  color: rgba(74,63,58,0.75) !important;
+  font-size: 14px !important;
+}
+
+/* X butonu: kartın sağ üstünde */
+#album-overlay-close,
+.album-overlay-close{
+  position: absolute !important;
+  top: 14px !important;
+  right: 14px !important;
+
+  width: 46px !important;
+  height: 46px !im
+
