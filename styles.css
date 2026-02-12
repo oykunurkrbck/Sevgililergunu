@@ -549,3 +549,20 @@ body{
   padding: 28px 16px 34px;
   color: var(--text-soft);
 }
+.album-center-btn {
+  margin-top: 12px;
+  background: none;
+  border: none;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #5a4a44;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.album-center-btn:hover {
+  color: #d46a92;
+  transform: scale(1.05);
+}
+
