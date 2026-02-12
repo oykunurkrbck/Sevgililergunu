@@ -1,4 +1,4 @@
-console.log("SCRIPT VERSION 13");
+@@ -1,530 +1,530 @@
 // ═══════════════════════════════════════════════════════
 // BİRLİKTE OLDUĞUMUZ İLK GÜN — Bu tarihi değiştir!
 // Format: Yıl, Ay (0-11), Gün
@@ -8,7 +8,7 @@ const BIRLIKTE_BASLANGIC = new Date(2021, 0, 18); // 18 Ocak 2021
 
 document.addEventListener('DOMContentLoaded', function () {
   // =====================================================
-  // 1) Gün say acı
+  // 1) Gün sayacı
   // =====================================================
   function guncelleGunSayaci() {
     const baslangic = new Date(BIRLIKTE_BASLANGIC);
@@ -444,6 +444,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { q: '7) Hangi mevsimi en çok severim?' },
     { q: '8) Eğer değiştirebilseydin hangi özelliğimi değiştirmek isterdin?' },
     { q: '9) Benimle ilgili sevdiğin bir özellik söyle?' },
+    { q: '10) Çoooook mu? Çooooooooooooooook mu?' }
     { q: '10) Beni ne kadar seviyorsun? Çoooook mu? Çooooooooooooooook mu? ' }
   ];
 
