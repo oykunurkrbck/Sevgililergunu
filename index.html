@@ -1,255 +1,50 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="pictures/Orta7.jpeg" type="image/x-icon" />
-  <title>Öykü 💖 Ercan</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" />
+<title>Öykü 💖 Ercan</title>
 
-  <link rel="stylesheet" href="styles.css?v=12" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="bg-pattern"></div>
 
-  <!-- Sol üst sadece gün sayacı (Albüm burada yok) -->
-  <div class="top-left-bar">
-    <div class="counter-box counter-fixed">
-      <span class="counter-number" id="days">0</span>
-      <span class="counter-label">gündür birlikteyiz</span>
-    </div>
-  </div>
+<div class="bg"></div>
 
-  <!-- Müzik (dosya yolu doğru olmalı) -->
-  <audio id="bg-music" loop>
-    <source src="music/sonArzum.mp3" type="audio/mpeg" />
-  </audio>
-<!-- Foto albümü (Albüm ikonuna tıklayınca açılır) -->
-<div class="album-overlay" id="album-overlay">
-  <button class="album-overlay-close" id="album-overlay-close" aria-label="Albümü kapat">&times;</button>
-
-  <section class="section album-section" id="album">
-    <h2>En Güzel Anlarımız</h2>
-    <p class="section-desc">Fotoğraflara tıkla, sağa/sola kaydır 💫</p>
-
-    <div class="gallery">
-      <div class="gallery-item" data-note="Birlikte ilk kutlamamız">
-        <img src="pictures/Orta1.jpeg" alt="Anı 1">
-        <span class="gallery-note-preview">Fotoğraf 1</span>
-      </div>
-
-      <div class="gallery-item" data-note="İlk konserimiz">
-        <img src="pictures/Orta2.jpeg" alt="Anı 2">
-        <span class="gallery-note-preview">Fotoğraf 2</span>
-      </div>
-
-      <div class="gallery-item" data-note="Herhangi bir okul günü ama eminim seninle çok güzeldi.">
-        <img src="pictures/Orta3.jpeg" alt="Anı 3">
-        <span class="gallery-note-preview">Fotoğraf 3</span>
-      </div>
-
-      <div class="gallery-item" data-note="Seni harcadım sorryy">
-        <img src="pictures/Orta4.jpeg" alt="Anı 4">
-        <span class="gallery-note-preview">Fotoğraf 4</span>
-      </div>
-
-      <div class="gallery-item" data-note="İlk tatilimiz">
-        <img src="pictures/Orta5.jpeg" alt="Anı 5">
-        <span class="gallery-note-preview">Fotoğraf 5</span>
-      </div>
-
-      <div class="gallery-item" data-note="Korkunç kavgalar sonrası böyle olabilmek..">
-        <img src="pictures/Orta6.jpeg" alt="Anı 6">
-        <span class="gallery-note-preview">Fotoğraf 6</span>
-      </div>
-
-      <div class="gallery-item" data-note="İlk Yeniyılımız">
-        <img src="pictures/Orta7.jpeg" alt="Anı 7">
-        <span class="gallery-note-preview">Fotoğraf 7</span>
-      </div>
-
-      <div class="gallery-item" data-note="Sana harika kombinler yaparken">
-        <img src="pictures/Orta8.jpeg" alt="Anı 8">
-        <span class="gallery-note-preview">Fotoğraf 8</span>
-      </div>
-
-      <div class="gallery-item" data-note="İlk Yıldönümümüz">
-        <img src="pictures/Orta9.jpeg" alt="Anı 9">
-        <span class="gallery-note-preview">Fotoğraf 9</span>
-      </div>
-
-      <div class="gallery-item" data-note="Sana hep böyle bakacağım sevgilimm">
-        <img src="pictures/Orta10.jpeg" alt="Anı 10">
-        <span class="gallery-note-preview">Fotoğraf 10</span>
-      </div>
-
-      <div class="gallery-item" data-note="YAKIŞIKLIMM">
-        <img src="pictures/Orta11.jpeg" alt="Anı 11">
-        <span class="gallery-note-preview">Fotoğraf 11</span>
-      </div>
-
-      <div class="gallery-item" data-note="En sevmediğim anlar">
-        <img src="pictures/Orta12.jpeg" alt="Anı 12">
-        <span class="gallery-note-preview">Fotoğraf 12</span>
-      </div>
-
-      <div class="gallery-item" data-note="Evde çalışma rollerii">
-        <img src="pictures/Orta13.jpeg" alt="Anı 13">
-        <span class="gallery-note-preview">Fotoğraf 13</span>
-      </div>
-
-      <div class="gallery-item" data-note="Bugün ne güzeldik">
-        <img src="pictures/Orta14.jpeg" alt="Anı 14">
-        <span class="gallery-note-preview">Fotoğraf 14</span>
-      </div>
-
-      <div class="gallery-item" data-note="Seni zorla götürdüğüm saçma sapan restoranda bile ne keyif almıştık!">
-        <img src="pictures/Orta15.jpeg" alt="Anı 15">
-        <span class="gallery-note-preview">Fotoğraf 15</span>
-      </div>
-
-      <div class="gallery-item" data-note="Sevgililer günüü.. Yalan söyleyip gizlice bana çiçek alman ahahahaah Tüm yalanların böyle olsun">
-        <img src="pictures/Orta16.jpeg" alt="Anı 16">
-        <span class="gallery-note-preview">Fotoğraf 16</span>
-      </div>
-
-      <div class="gallery-item" data-note="Çooooook seviyorum!">
-        <img src="pictures/Orta17.jpeg" alt="Anı 17">
-        <span class="gallery-note-preview">Fotoğraf 17</span>
-      </div>
-
-      <div class="gallery-item" data-note="İyi ki doğmuştun!">
-        <img src="pictures/Orta18.jpeg" alt="Anı 18">
-        <span class="gallery-note-preview">Fotoğraf 18</span>
-      </div>
-
-      <div class="gallery-item" data-note="Ne kadar kötü olsam da huzur bulduğum yer..">
-        <img src="pictures/Orta19.jpeg" alt="Anı 19">
-        <span class="gallery-note-preview">Fotoğraf 19</span>
-      </div>
-
-      <div class="gallery-item" data-note="Korkunç kararlarımı bile desteklemen ahahahahha">
-        <img src="pictures/Orta20.jpeg" alt="Anı 20">
-        <span class="gallery-note-preview">Fotoğraf 20</span>
-      </div>
-
-      <div class="gallery-item" data-note="İlk beraber oy kullanmamızz">
-        <img src="pictures/Orta21.jpeg" alt="Anı 21">
-        <span class="gallery-note-preview">Fotoğraf 21</span>
-      </div>
-
-      <div class="gallery-item" data-note="En güzel başarımız..">
-        <img src="pictures/Orta22.jpeg" alt="Anı 22">
-        <span class="gallery-note-preview">Fotoğraf 22</span>
-      </div>
-
-      <div class="gallery-item" data-note="Beraber çok güzeliz!">
-        <img src="pictures/Orta23.jpeg" alt="Anı 23">
-        <span class="gallery-note-preview">Fotoğraf 23</span>
-      </div>
-
-      <div class="gallery-item" data-note="Korkunç yazımın en güzel günü!">
-        <img src="pictures/Orta24.jpeg" alt="Anı 24">
-        <span class="gallery-note-preview">Fotoğraf 24</span>
-      </div>
-    </div>
-  </section>
+<!-- Gün Sayacı -->
+<div class="counter">
+  <span id="days">0</span>
+  <small>gündür birlikteyiz</small>
 </div>
-  <header class="hero">
-    <h1>Öykü 💖 Ercan</h1>
 
-    <!-- Albüm butonu ORTADA -->
-<button class="album-center-btn" id="album-icon-btn">
-  ALBÜMÜMÜZ 💗
-</button>
-  </header>
+<header>
+  <h1>Öykü 💖 Ercan</h1>
 
-  <!-- Müzik Butonu -->
-  <button class="music-btn" id="music-btn" aria-label="Müzik" title="Müziği aç/kapat">💗</button>
-  <div class="music-note" id="music-note">Bu şarkı çalınca hep bizi düşünüyorum 💗</div>
+  <button id="albumBtn" class="albumBtn">
+    💗 ALBÜMÜMÜZ
+  </button>
+</header>
 
-  <!-- ===================== -->
-  <!-- ALBÜM OVERLAY (başta gizli) -->
-  <!-- ===================== -->
-  <div class="album-overlay" id="album-overlay" aria-hidden="true">
-    <button class="album-overlay-close" id="album-overlay-close" aria-label="Albümü kapat">&times;</button>
+<!-- ALBÜM -->
+<div id="albumOverlay" class="albumOverlay">
+  <button id="closeAlbum">×</button>
 
-    <div class="album-shell">
-      <button class="album-nav" id="album-prev" type="button" aria-label="Önceki">‹</button>
+  <div class="albumWrap">
+    <button id="prev">‹</button>
 
-      <div class="album-stage">
-        <img id="album-img" src="" alt="Anımız" />
-        <div class="album-note" id="album-note"></div>
-        <div class="album-count" id="album-count"></div>
-      </div>
-
-      <button class="album-nav" id="album-next" type="button" aria-label="Sonraki">›</button>
+    <div class="albumStage">
+      <img id="albumImg">
+      <p id="albumNote"></p>
+      <small id="albumCount"></small>
     </div>
+
+    <button id="next">›</button>
   </div>
+</div>
 
-  <!-- Lightbox KALABİLİR (istersen sonra kaldırırız) -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Kapat">&times;</button>
-    <div class="lightbox-content">
-      <img src="" alt="" id="lightbox-img" />
-      <p class="lightbox-note" id="lightbox-note"></p>
-    </div>
-  </div>
-
-  <!-- QA + Quiz -->
-  <div class="qa-quiz-row">
-    <section class="section qa-section" id="qa">
-      <h2>Bir sayı seç</h2>
-      <p class="section-desc">Anılarımız ❤️</p>
-      <div class="number-grid" id="number-grid"></div>
-    </section>
-
-    <section class="section quiz-intro-section" id="quiz-intro">
-      <div class="quiz-intro-card">
-        <h2 class="quiz-intro-title">Senin için bir quiz hazırladım…</h2>
-        <p class="quiz-intro-sub">Hazır mısın? 💗</p>
-        <button class="quiz-start-btn" id="quiz-start-btn" type="button">Başla</button>
-      </div>
-    </section>
-  </div>
-
-  <!-- 26'ya basınca açılacak 5 kalp -->
-  <section class="section fav5-section" id="fav5">
-    <div class="fav5-hearts" id="fav5-hearts" aria-hidden="true">
-      <button class="fav5-heart-btn" type="button" data-title="Sarılışın"
-        data-text="Sen sarıldığında her şey duruyor, tüm dertler sıfırlanıyor.">💗</button>
-
-      <button class="fav5-heart-btn" type="button" data-title="Beni sevme şeklin"
-        data-text="Sanki dünyadaki en değerli insamışım gibi değerli hissettiriyor">💗</button>
-
-      <button class="fav5-heart-btn" type="button" data-title="Her zaman yanımda oluşun"
-        data-text="Ne yaparsam yapayım arkamda olduğunu bilmek,desteğini hissetmek o kadar güzel ki">💗</button>
-
-      <button class="fav5-heart-btn" type="button" data-title="İnce düşünmen"
-        data-text="Hiç aklıma gelmeyen anlarda yaptığın tatlışlıklar">💗</button>
-
-      <button class="fav5-heart-btn" type="button" data-title="Evim gibi hissettirişin"
-        data-text="Yanında olduğumda hissettiğim güven… evim gibi.">💗</button>
-    </div>
-  </section>
-
-  <!-- Ortak Popup -->
-  <div class="qa-card-overlay" id="qa-card-overlay">
-    <div class="qa-card" id="qa-card">
-      <button class="qa-card-close" id="qa-card-close" aria-label="Kapat">&times;</button>
-      <h3 class="qa-card-title" id="qa-card-title"></h3>
-      <p class="qa-card-content" id="qa-card-content"></p>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <p>Umarım beğenirsin, Seni çok seviyorum</p>
-  </footer>
-
-  <script src="script.js?v=12"></script>
+<script src="script.js"></script>
 </body>
 </html>
