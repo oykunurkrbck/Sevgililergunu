@@ -569,3 +569,51 @@ body{
   transform: scale(1.05);
   opacity: 0.85;
 }
+/* =========================
+   ALBÜM ORTALAMA FIX (SAFE)
+   ========================= */
+
+/* Overlay ekranda tam ortalasın */
+#album-overlay.open,
+.album-overlay.open{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Beyaz kutuyu (shell) ortala ve genişliği dengeli yap */
+#album-overlay .album-shell,
+.album-overlay .album-shell{
+  margin: auto !important;
+  width: min(980px, 92vw) !important;
+  max-height: 90vh !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 20px !important;
+}
+
+/* Foto alanını ortala */
+#album-overlay .album-stage,
+.album-overlay .album-stage{
+  width: 100% !important;
+  max-width: 700px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Resmi ortala */
+#album-overlay .album-stage img,
+.album-overlay .album-stage img{
+  display: block !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  max-height: 70vh !important;
+  object-fit: contain !important;
+}
