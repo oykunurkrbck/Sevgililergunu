@@ -1,3 +1,4 @@
+console.log("SCRIPT VERSION 13");
 // ═══════════════════════════════════════════════════════
 // BİRLİKTE OLDUĞUMUZ İLK GÜN — Bu tarihi değiştir!
 // Format: Yıl, Ay (0-11), Gün
