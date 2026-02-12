@@ -676,5 +676,20 @@ body{
   display: grid;
   place-items: center;
 }
+/* SADECE ORTALAMA FIX */
+#lightbox.active{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#lightbox .lightbox-content{
+  margin: 0 auto !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+}
+
 
 
