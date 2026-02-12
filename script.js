@@ -443,7 +443,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { q: '7) Hangi mevsimi en çok severim?' },
     { q: '8) Eğer değiştirebilseydin hangi özelliğimi değiştirmek isterdin?' },
     { q: '9) Benimle ilgili sevdiğin bir özellik söyle?' },
-    { q: '10) Çoooook mu? Çooooooooooooooook mu?' }
+    { q: '10) Beni ne kadar seviyorsun? Çoooook mu? Çooooooooooooooook mu? ' }
   ];
 
   let i = 0;
