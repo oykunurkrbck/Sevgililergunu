@@ -42,8 +42,6 @@ body{
 /* ===============================
    ÜST BAR (Sayaç + Albüm)
 ================================ */
-
-/* bar sabit ve sayfa üstünde */
 .top-left-bar{
   position: fixed;
   top: 14px;
@@ -55,10 +53,10 @@ body{
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  pointer-events: none; /* sadece butonlar tıklansın */
+  pointer-events: none; /* sadece iç butonlar tıklansın */
 }
 
-/* sayaç sol üst */
+/* sayaç */
 .counter-box{
   pointer-events: auto;
   background: var(--card);
@@ -85,7 +83,7 @@ body{
   margin-top: 2px;
 }
 
-/* Albüm butonu ÜSTTE ORTADA */
+/* Albüm butonu üstte ortada */
 .album-icon-btn{
   pointer-events: auto;
   position: absolute;
@@ -115,32 +113,21 @@ body{
 .album-icon-btn:active{
   transform: translateX(-50%) scale(0.98);
 }
-.album-icon{
-  width: 26px;
-  height: 26px;
-}
-.album-icon-label{
-  font-size: 12px;
-  font-weight: 700;
-}
+.album-icon{ width: 26px; height: 26px; }
+.album-icon-label{ font-size: 12px; font-weight: 700; }
 
-/* Sağ üst kalp (müzik butonu zaten ayrıca var ama sayfada ikon varsa) */
-.top-right-slot{
-  pointer-events:auto;
-}
+.top-right-slot{ pointer-events:auto; }
 
 /* Üst bar yüzünden içerik altında kalmasın */
-.page-pad-top{
-  padding-top: 110px;
-}
+.page-pad-top{ padding-top: 110px; }
 
 /* ===============================
-   HERO (Başlık)
+   HERO
 ================================ */
 .hero{
   position: relative;
   z-index: 1;
-  padding: 120px 16px 18px; /* üst bar için boşluk */
+  padding: 120px 16px 18px;
   text-align: center;
 }
 .hero h1{
@@ -153,19 +140,17 @@ body{
 
 /* ===============================
    ANA SAYFADA GALERİ GÖZÜKMESİN
-   (Albüm açılmadan "çarpı resimler" olmasın)
 ================================ */
-.gallery{
-  display:none; /* önemli: albüm overlay içinde açacağız */
-}
+.gallery{ display:none; }
 
 /* ===============================
-   ALBÜM OVERLAY (Açılınca resimler)
+   ALBÜM OVERLAY (Grid Albüm)
 ================================ */
 .album-overlay{
   position: fixed;
   inset: 0;
   z-index: 80;
+
   background: rgba(253, 246, 240, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -176,7 +161,6 @@ body{
   overflow: auto;
   padding: 22px 14px 28px;
 }
-
 .album-overlay.open{
   opacity: 1;
   pointer-events: auto;
@@ -208,7 +192,6 @@ body{
   margin: 14px auto 0;
   text-align: center;
 }
-
 .album-section h2{
   font-family: 'Cormorant Garamond', serif;
   font-size: 34px;
@@ -219,7 +202,7 @@ body{
   margin-bottom: 18px;
 }
 
-/* Albüm açıkken grid görünür */
+/* Albüm açıkken grid */
 .album-overlay.open .gallery{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -227,8 +210,6 @@ body{
   justify-content: center;
   align-items: stretch;
 }
-
-/* tablet/telefon */
 @media (max-width: 900px){
   .album-overlay.open .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -256,7 +237,6 @@ body{
   .gallery-item img{ height: 320px; }
 }
 
-/* Fotoğraf etiketi */
 .gallery-note-preview{
   position: absolute;
   left: 10px;
@@ -287,10 +267,8 @@ body{
   background: linear-gradient(135deg, #fff 0%, var(--blush) 100%);
   box-shadow: 0 10px 30px var(--shadow);
   cursor:pointer;
-
   font-size: 22px;
 }
-
 .music-btn.playing{
   outline: 2px solid rgba(199,123,131,0.35);
 }
@@ -323,20 +301,32 @@ body{
 
 /* ===============================
    LIGHTBOX (Foto tıkla -> büyük)
+   Not: Hem #lightbox hem .lightbox destekli
 ================================ */
+#lightbox,
 .lightbox{
   position: fixed;
   inset: 0;
   z-index: 120;
   background: rgba(0,0,0,0.55);
+
+  /* ORTALAMA GARANTİ */
   display: none;
   align-items: center;
   justify-content: center;
+
   padding: 18px;
 }
-.lightbox.active{ display:flex; }
 
-.lightbox-content{
+/* aktif olunca aç */
+#lightbox.active,
+.lightbox.active{
+  display: flex;
+}
+
+/* içerik kutusu (tek kaynak) */
+#lightbox .lightbox-content,
+.lightbox .lightbox-content{
   width: min(980px, 92vw);
   max-height: 86vh;
   background: rgba(255,255,255,0.96);
@@ -344,9 +334,17 @@ body{
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.25);
   box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+
+  /* ORTALAMA (iç) */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
-.lightbox-content img{
+/* resim */
+#lightbox-img,
+#lightbox .lightbox-content img,
+.lightbox .lightbox-content img{
   width: 100%;
   height: min(70vh, 640px);
   object-fit: contain;
@@ -354,25 +352,32 @@ body{
   display:block;
 }
 
+/* not alanı */
+#lightbox-note,
 .lightbox-note{
   padding: 12px 14px;
   color: var(--text);
   font-size: 15px;
   background: #fff;
+  text-align: center;
 }
 
+/* kapatma butonu */
+#lightbox-close,
 .lightbox-close{
-  position: absolute;
+  position: fixed;
   top: 16px;
   right: 16px;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(232,160,168,0.45);
+  background: rgba(255,255,255,0.95);
   cursor: pointer;
-  font-size: 26px;
+  font-size: 28px;
   line-height: 1;
+  display: grid;
+  place-items: center;
   color: var(--rose-dark);
 }
 
@@ -549,205 +554,18 @@ body{
   padding: 28px 16px 34px;
   color: var(--text-soft);
 }
-.album-text-btn {
+
+/* metinle albüm aç butonu varsa */
+.album-text-btn{
   margin-top: 10px;
   font-size: 18px;
   font-weight: 600;
-  color: #c77b83;
+  color: var(--rose-dark);
   cursor: pointer;
   text-align: center;
   transition: 0.2s;
 }
-
-.album-text-btn:hover {
+.album-text-btn:hover{
   transform: scale(1.05);
   opacity: 0.85;
-}
-.album-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.album-overlay.open {
-  display: flex;
-}
-
-/* Albüm içindeki beyaz alan */
-.album-shell {
-  background: #fff;
-  border-radius: 20px;
-  padding: 20px;
-  max-width: 90%;
-  max-height: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* Foto alanı */
-.album-stage {
-  text-align: center;
-  max-width: 600px;
-}
-
-.album-stage img {
-  width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  border-radius: 16px;
-}
-
-/* Sağ sol oklar */
-.album-nav {
-  font-size: 40px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-/* =========================
-   LIGHTBOX (foto tıklayınca açılan)
-   ========================= */
-
-#lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  z-index: 9999;
-}
-
-#lightbox.active {
-  display: flex;
-}
-
-#lightbox .lightbox-content {
-  width: min(920px, 96vw);
-  max-height: 90vh;
-  background: rgba(255,255,255,0.92);
-  border-radius: 22px;
-  padding: 18px;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.18);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-#lightbox-img {
-  width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  border-radius: 16px;
-  display: block;
-}
-
-#lightbox-note {
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #4a3f3a;
-}
-
-/* Kapat butonu */
-#lightbox-close {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  border: 1px solid rgba(232,160,168,0.45);
-  background: rgba(255,255,255,0.95);
-  cursor: pointer;
-  font-size: 28px;
-  line-height: 1;
-  display: grid;
-  place-items: center;
-}
-/* SADECE ORTALAMA FIX */
-#lightbox.active{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#lightbox .lightbox-content{
-  margin: 0 auto !important;
-  position: relative !important;
-  left: 0 !important;
-  right: 0 !important;
-  transform: none !important;
-}
-
-/* ✅ Lightbox ortalama */ .lightbox{ display: flex; align-items: center; justify-content: center; } .lightbox-content{ margin: 0 auto; text-align: center; } #lightbox-img{ display: block; margin: 0 auto; }
-
-/* =========================
-   LIGHTBOX SADECE ORTALAMA FIX
-   ========================= */
-
-#lightbox{
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#lightbox .lightbox-content{
-  margin: 0 auto !important;
-  left: 0 !important;
-  right: 0 !important;
-  transform: none !important;
-}
-
-#lightbox-img{
-  display: block !important;
-  margin: 0 auto !important;
-  max-width: 100%;
-  max-height: 75vh;
-  object-fit: contain;
-}
-/* =================================
-   LIGHTBOX MERKEZLEME – SAFE FIX
-   ================================= */
-
-#lightbox{
-  position: fixed !important;
-  inset: 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: 20px !important;
-}
-
-#lightbox .lightbox-content{
-  position: relative !important;
-  margin: 0 auto !important;
-  left: auto !important;
-  right: auto !important;
-  top: auto !important;
-  bottom: auto !important;
-  transform: none !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-#lightbox-img{
-  display: block !important;
-  margin: 0 auto !important;
-  max-width: 95% !important;
-  max-height: 75vh !important;
-  object-fit: contain !important;
 }
