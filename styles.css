@@ -691,5 +691,5 @@ body{
   transform: none !important;
 }
 
-
+/* ✅ Lightbox ortalama */ .lightbox{ display: flex; align-items: center; justify-content: center; } .lightbox-content{ margin: 0 auto; text-align: center; } #lightbox-img{ display: block; margin: 0 auto; }
 
