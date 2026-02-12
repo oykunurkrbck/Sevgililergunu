@@ -1,184 +1,551 @@
+/* ===============================
+   ROMANTİK TEMA - RESET
+================================ */
+:root{
+  --rose:#e8a0a8;
+  --rose-dark:#c77b83;
+  --cream:#fdf6f0;
+  --blush:#f5e0dc;
+  --gold:#c9a962;
+
+  --text:#4a3f3a;
+  --text-soft:#7a6b65;
+
+  --shadow: rgba(200,120,130,0.22);
+  --card: rgba(255,255,255,0.75);
+  --border: rgba(232,160,168,0.45);
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
 body{
-  margin:0;
-  font-family:Quicksand;
-  text-align:center;
-  background:#f8f3f1;
+  font-family:'Quicksand', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.55;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.bg{
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle,#ffdbe6,#f8f3f1);
-  z-index:-1;
+/* Arka desen */
+.bg-pattern{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--blush) 0%, transparent 42%),
+    radial-gradient(circle at 80% 70%, rgba(232,160,168,0.25) 0%, transparent 45%),
+    radial-gradient(circle at 55% 50%, rgba(201,169,98,0.08) 0%, transparent 62%);
 }
 
-/* Gün Sayacı */
-.counter{
-  position:fixed;
-  top:15px;
-  left:15px;
-  background:#fff;
-  padding:12px 18px;
-  border-radius:18px;
-  box-shadow:0 6px 18px rgba(0,0,0,.1);
+/* ===============================
+   ÜST BAR (Sayaç + Albüm)
+================================ */
+
+/* bar sabit ve sayfa üstünde */
+.top-left-bar{
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  z-index: 40;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  pointer-events: none; /* sadece butonlar tıklansın */
 }
 
-.counter span{
-  font-size:28px;
-  font-weight:bold;
+/* sayaç sol üst */
+.counter-box{
+  pointer-events: auto;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px var(--shadow);
+  padding: 10px 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-width: 92px;
+  text-align: center;
+}
+.counter-number{
+  display:block;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--rose-dark);
+  letter-spacing: 0.5px;
+}
+.counter-label{
+  display:block;
+  font-size: 12px;
+  color: var(--text-soft);
+  margin-top: 2px;
 }
 
-/* Başlık */
-h1{
-  font-family:"Cormorant Garamond";
-  margin-top:80px;
-  font-size:48px;
-}
+/* Albüm butonu ÜSTTE ORTADA */
+.album-icon-btn{
+  pointer-events: auto;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
 
-/* Albüm Buton */
-.albumBtn{
-  margin-top:20px;
-  padding:12px 22px;
-  border-radius:20px;
-  border:none;
-  font-weight:600;
-  cursor:pointer;
-  background:white;
-  box-shadow:0 6px 18px rgba(0,0,0,.15);
-}
-
-/* Overlay */
-.albumOverlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.4);
-  display:none;
+  display:flex;
+  flex-direction: column;
   align-items:center;
   justify-content:center;
+  gap: 4px;
+
+  width: 62px;
+  height: 62px;
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #fff 0%, var(--blush) 100%);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px var(--shadow);
+  cursor: pointer;
+  user-select:none;
+
+  color: var(--rose-dark);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.album-icon-btn:active{
+  transform: translateX(-50%) scale(0.98);
+}
+.album-icon{
+  width: 26px;
+  height: 26px;
+}
+.album-icon-label{
+  font-size: 12px;
+  font-weight: 700;
 }
 
-.albumOverlay.active{
-  display:flex;
+/* Sağ üst kalp (müzik butonu zaten ayrıca var ama sayfada ikon varsa) */
+.top-right-slot{
+  pointer-events:auto;
 }
 
-#closeAlbum{
-  position:absolute;
-  top:20px;
-  right:30px;
-  font-size:30px;
-  border:none;
-  background:none;
-  color:white;
-  cursor:pointer;
+/* Üst bar yüzünden içerik altında kalmasın */
+.page-pad-top{
+  padding-top: 110px;
 }
 
-.albumWrap{
-  display:flex;
-  align-items:center;
-  gap:20px;
+/* ===============================
+   HERO (Başlık)
+================================ */
+.hero{
+  position: relative;
+  z-index: 1;
+  padding: 120px 16px 18px; /* üst bar için boşluk */
+  text-align: center;
+}
+.hero h1{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--text);
 }
 
-.albumStage{
-  background:white;
-  padding:20px;
-  border-radius:20px;
-  box-shadow:0 8px 30px rgba(0,0,0,.3);
+/* ===============================
+   ANA SAYFADA GALERİ GÖZÜKMESİN
+   (Albüm açılmadan "çarpı resimler" olmasın)
+================================ */
+.gallery{
+  display:none; /* önemli: albüm overlay içinde açacağız */
 }
 
-.albumStage img{
-  width:320px;
-  border-radius:16px;
+/* ===============================
+   ALBÜM OVERLAY (Açılınca resimler)
+================================ */
+.album-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(253, 246, 240, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+  overflow: auto;
+  padding: 22px 14px 28px;
 }
 
-.albumWrap button{
-  font-size:40px;
-  border:none;
-  background:white;
-  border-radius:50%;
-  width:60px;
-  height:60px;
-  cursor:pointer;
+.album-overlay.open{
+  opacity: 1;
+  pointer-events: auto;
 }
-section{ margin-top:50px; }
 
+.album-overlay-close{
+  position: sticky;
+  top: 10px;
+  margin-left: auto;
+  display: grid;
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 20px var(--shadow);
+  cursor: pointer;
+
+  font-size: 26px;
+  line-height: 1;
+  color: var(--rose-dark);
+}
+
+.album-section{
+  max-width: 1100px;
+  margin: 14px auto 0;
+  text-align: center;
+}
+
+.album-section h2{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  margin-bottom: 6px;
+}
 .section-desc{
-  margin-top:6px;
-  color: #7a6b65;
-  font-size: 14px;
+  color: var(--text-soft);
+  margin-bottom: 18px;
 }
 
+/* Albüm açıkken grid görünür */
+.album-overlay.open .gallery{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* tablet/telefon */
+@media (max-width: 900px){
+  .album-overlay.open .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 520px){
+  .album-overlay.open .gallery{ grid-template-columns: 1fr; }
+}
+
+.gallery-item{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: 0 14px 28px var(--shadow);
+  cursor: pointer;
+}
+
+.gallery-item img{
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+@media (max-width: 520px){
+  .gallery-item img{ height: 320px; }
+}
+
+/* Fotoğraf etiketi */
+.gallery-note-preview{
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  font-size: 13px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* ===============================
+   MÜZİK BUTONU + NOT
+================================ */
+.music-btn{
+  position: fixed;
+  right: 14px;
+  top: 14px;
+  z-index: 60;
+
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, #fff 0%, var(--blush) 100%);
+  box-shadow: 0 10px 30px var(--shadow);
+  cursor:pointer;
+
+  font-size: 22px;
+}
+
+.music-btn.playing{
+  outline: 2px solid rgba(199,123,131,0.35);
+}
+
+.music-note{
+  position: fixed;
+  right: 14px;
+  top: 74px;
+  z-index: 60;
+
+  max-width: 280px;
+  padding: 10px 12px;
+  border-radius: 14px;
+
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 20px var(--shadow);
+  color: var(--text-soft);
+  font-size: 13px;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease;
+}
+.music-note.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===============================
+   LIGHTBOX (Foto tıkla -> büyük)
+================================ */
+.lightbox{
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+.lightbox.active{ display:flex; }
+
+.lightbox-content{
+  width: min(980px, 92vw);
+  max-height: 86vh;
+  background: rgba(255,255,255,0.96);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+}
+
+.lightbox-content img{
+  width: 100%;
+  height: min(70vh, 640px);
+  object-fit: contain;
+  background: #000;
+  display:block;
+}
+
+.lightbox-note{
+  padding: 12px 14px;
+  color: var(--text);
+  font-size: 15px;
+  background: #fff;
+}
+
+.lightbox-close{
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.9);
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--rose-dark);
+}
+
+/* ===============================
+   SECTIONS (Sayı seç + Quiz)
+================================ */
+.section{
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.qa-quiz-row{
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 22px auto 0;
+  padding: 0 16px;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 900px){
+  .qa-quiz-row{ grid-template-columns: 1fr; }
+}
+
+.section h2{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 34px;
+  margin-bottom: 6px;
+}
+
+/* sayı grid */
 .number-grid{
-  display:grid;
-  grid-template-columns:repeat(5,60px);
-  gap:14px;
-  justify-content:center;
-  margin-top:20px;
+  display: grid;
+  grid-template-columns: repeat(5, 58px);
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+@media (max-width: 520px){
+  .number-grid{ grid-template-columns: repeat(5, 54px); }
 }
 
 .number-btn{
-  width:60px;
-  height:60px;
-  border-radius:16px;
-  border:2px solid #e8a0a8;
-  background:white;
-  cursor:pointer;
-  font-weight:800;
-  transition:.2s;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.75);
+  border: 2px solid rgba(232,160,168,0.55);
+  box-shadow: 0 10px 18px var(--shadow);
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--text);
+  transition: transform .12s ease;
+}
+.number-btn:active{ transform: scale(0.98); }
+
+/* quiz kart */
+.quiz-intro-card{
+  background: rgba(255,255,255,0.75);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: 0 16px 32px var(--shadow);
+  padding: 18px 16px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.quiz-intro-title{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+.quiz-intro-sub{
+  color: var(--text-soft);
+  margin-bottom: 12px;
+}
+.quiz-start-btn{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 2px solid var(--rose);
+  background: linear-gradient(135deg, #fff 0%, var(--blush) 100%);
+  color: var(--rose-dark);
+  font-weight: 800;
+  cursor: pointer;
 }
 
-.number-btn:hover{
-  background:#e8a0a8;
-  color:white;
-}
-
-/* Popup */
+/* ===============================
+   QA POPUP (Ortak popup)
+================================ */
 .qa-card-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.45);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
-  z-index:9999;
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
 }
-
 .qa-card-overlay.open{ display:flex; }
 
 .qa-card{
-  width:min(520px, 92vw);
-  background:white;
-  border-radius:22px;
-  padding:18px 18px 16px;
-  box-shadow:0 30px 80px rgba(0,0,0,.25);
-  text-align:left;
-  position:relative;
+  width: min(720px, 92vw);
+  background: rgba(255,255,255,0.96);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 18px 16px 16px;
+  position: relative;
 }
 
 .qa-card-close{
-  position:absolute;
-  top:10px;
-  right:12px;
-  width:40px;
-  height:40px;
-  border:none;
-  border-radius:14px;
-  background:#fff;
-  font-size:26px;
-  font-weight:900;
-  cursor:pointer;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  font-size: 24px;
+  color: var(--rose-dark);
 }
 
 .qa-card-title{
-  font-family:"Cormorant Garamond", serif;
-  font-size:22px;
-  margin-bottom:8px;
-  color:#4a3f3a;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+.qa-card-content{
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.7;
 }
 
-.qa-card-content{
-  line-height:1.7;
-  color:#5f514b;
-  font-size:15px;
-  white-space:pre-wrap;
+/* ===============================
+   5 KALP (26)
+================================ */
+.fav5-hearts{
+  display: none;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.fav5-hearts.open{ display:flex; flex-wrap: wrap; }
+
+.fav5-heart-btn{
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 12px 22px var(--shadow);
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* ===============================
+   FOOTER
+================================ */
+.footer{
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 28px 16px 34px;
+  color: var(--text-soft);
 }
