@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { content: "Bu yaz yaptığımız tatil mükemmel ötesiydi" },
     { content: "Her kararımda danıştığım ilk insansın" },
     { content: "Sana ilk ne zaman güvendim bilmiyorum amaaa o günden beri yanındayken evimde hissediyorum." },
-    { content: "Ada tatilinde sarhoş olup uyumama rağmen beni tatlı tatlı öpüp hiç kızmaman ahahah seni yerim." },
+    { content: "Seninle uyumak dünyadaki en güzel şeylerden biri" },
     { content: "Seni neden seviyorum bilmiyorum ama seninle olmayı neden çok sevdiğimi biliyorum: her koşulda günümü güzelleştirebildiğin için." },
     { content: "En yakın arkadaşım olduğun için teşekkür ederim sevgilim" },
     { content: "Bana telefonla konuşmayı sevdirdin, artık her şey için seni arıyorum. Yakalandın! hahaha" },
@@ -195,8 +195,8 @@ document.addEventListener("DOMContentLoaded", function () {
     { content: "Hep böyle kalalım… hep çok mutlu olamayız ama mutlu olduğumuz hiçbir anı unutmayalım" },
     { content: "Beraber okuduk, beraber çalıştık, beraber mezun olduk… daha nice güzel başarılarımıza sevgilim" },
     { content: "Sen ve ben, birlikte. Takımız. Artık 'ben' değil 'biz' diye düşünmek en güzel his." },
+    { content: "İyi ki o kulübe girmişsin, iyi ki her şeyi göze aldık, iyi ki barıştık, iyi ki hayatımdasın... " },
     { content: "Seni çoooooooooooook seviyorum" },
-    { content: "İyi ki o kulübe girmişsin, iyi ki her şeyi göze aldık, iyi ki barıştık, iyi ki hayatımdasın..." },
     { title: "__FAV5__", content: "" },
   ];
 
