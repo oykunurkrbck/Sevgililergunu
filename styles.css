@@ -1,225 +1,101 @@
-/* ===== RENKLER ===== */
-:root{
-  --rose:#e8a0a8;
-  --rose-dark:#c77b83;
-  --cream:#fdf6f0;
-  --blush:#f5e0dc;
-  --text:#4a3f3a;
-  --text-soft:#7a6b65;
-}
-
-/* ===== RESET ===== */
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
 body{
-  font-family:'Quicksand', sans-serif;
-  background: linear-gradient(135deg,#fff 0%,var(--blush) 100%);
-  color:var(--text);
-  min-height:100vh;
+  margin:0;
+  font-family:Quicksand;
   text-align:center;
-  overflow-x:hidden;
+  background:#f8f3f1;
 }
 
-/* ===== ÜST SOL GÜN SAYACI ===== */
-.top-left-bar{
-  position:fixed;
-  top:20px;
-  left:20px;
-  z-index:10;
-}
-
-.counter-box{
-  background:rgba(255,255,255,0.85);
-  border-radius:20px;
-  padding:14px 18px;
-  box-shadow:0 8px 22px rgba(200,120,130,0.2);
-  backdrop-filter:blur(6px);
-}
-
-.counter-number{
-  font-size:26px;
-  font-weight:800;
-  color:var(--rose-dark);
-}
-
-.counter-label{
-  font-size:12px;
-  color:var(--text-soft);
-}
-
-/* ===== HERO ===== */
-.hero{
-  margin-top:120px;
-}
-
-.hero h1{
-  font-family:'Cormorant Garamond', serif;
-  font-size:56px;
-  font-weight:600;
-}
-
-/* ===== ORTADAKİ ALBÜM BUTONU ===== */
-.album-center-btn{
-  margin-top:20px;
-  background:rgba(255,255,255,0.85);
-  border:1px solid rgba(232,160,168,0.35);
-  border-radius:22px;
-  padding:14px 26px;
-  cursor:pointer;
-  font-weight:700;
-  font-size:15px;
-  color:var(--rose-dark);
-  box-shadow:0 8px 22px rgba(200,120,130,0.18);
-  backdrop-filter:blur(6px);
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  transition:.2s;
-}
-
-.album-center-btn:hover{
-  transform:scale(1.05);
-}
-
-.album-center-ico{
-  font-size:24px;
-}
-
-/* ===== ALBÜM OVERLAY ===== */
-.album-overlay{
+.bg{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.45);
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:20;
+  background:radial-gradient(circle,#ffdbe6,#f8f3f1);
+  z-index:-1;
 }
 
-.album-overlay.open{
+/* Gün Sayacı */
+.counter{
+  position:fixed;
+  top:15px;
+  left:15px;
+  background:#fff;
+  padding:12px 18px;
+  border-radius:18px;
+  box-shadow:0 6px 18px rgba(0,0,0,.1);
+}
+
+.counter span{
+  font-size:28px;
+  font-weight:bold;
+}
+
+/* Başlık */
+h1{
+  font-family:"Cormorant Garamond";
+  margin-top:80px;
+  font-size:48px;
+}
+
+/* Albüm Buton */
+.albumBtn{
+  margin-top:20px;
+  padding:12px 22px;
+  border-radius:20px;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+  background:white;
+  box-shadow:0 6px 18px rgba(0,0,0,.15);
+}
+
+/* Overlay */
+.albumOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.4);
+  display:none;
+  align-items:center;
+  justify-content:center;
+}
+
+.albumOverlay.active{
   display:flex;
 }
 
-.album-shell{
-  background:white;
-  border-radius:20px;
-  padding:20px;
-  width:90%;
-  max-width:520px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.2);
-  position:relative;
-}
-
-.album-stage img{
-  width:100%;
-  border-radius:14px;
-}
-
-.album-note{
-  margin-top:10px;
-  font-size:14px;
-  color:var(--text-soft);
-}
-
-.album-count{
-  margin-top:4px;
-  font-size:12px;
-  color:var(--text-soft);
-}
-
-.album-nav{
+#closeAlbum{
   position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:white;
-  border:none;
-  font-size:28px;
-  cursor:pointer;
-  border-radius:50%;
-  width:40px;
-  height:40px;
-}
-
-#album-prev{ left:-15px; }
-#album-next{ right:-15px; }
-
-.album-overlay-close{
-  position:absolute;
-  top:10px;
-  right:14px;
-  font-size:28px;
-  background:none;
-  border:none;
-  cursor:pointer;
-}
-
-/* ===== MÜZİK BUTONU ===== */
-.music-btn{
-  position:fixed;
   top:20px;
-  right:20px;
+  right:30px;
+  font-size:30px;
+  border:none;
+  background:none;
+  color:white;
+  cursor:pointer;
+}
+
+.albumWrap{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.albumStage{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 8px 30px rgba(0,0,0,.3);
+}
+
+.albumStage img{
+  width:320px;
+  border-radius:16px;
+}
+
+.albumWrap button{
+  font-size:40px;
+  border:none;
   background:white;
   border-radius:50%;
-  width:50px;
-  height:50px;
-  border:none;
-  font-size:22px;
-  cursor:pointer;
-  box-shadow:0 6px 16px rgba(0,0,0,0.15);
-}
-
-.music-note{
-  position:fixed;
-  top:80px;
-  right:20px;
-  background:white;
-  padding:10px 14px;
-  border-radius:14px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.15);
-  font-size:12px;
-  display:none;
-}
-
-.music-note.show{
-  display:block;
-}
-
-/* ===== SAYI GRID ===== */
-.section{
-  margin-top:60px;
-}
-
-.number-grid{
-  display:grid;
-  grid-template-columns:repeat(5,60px);
-  gap:14px;
-  justify-content:center;
-  margin-top:20px;
-}
-
-.number-btn{
   width:60px;
   height:60px;
-  border-radius:16px;
-  border:2px solid var(--rose);
-  background:white;
   cursor:pointer;
-  font-weight:700;
-  transition:.2s;
-}
-
-.number-btn:hover{
-  background:var(--rose);
-  color:white;
-}
-
-/* ===== FOOTER ===== */
-.footer{
-  margin:60px 0;
-  font-size:14px;
-  color:var(--text-soft);
 }
