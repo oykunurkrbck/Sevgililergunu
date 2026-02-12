@@ -910,6 +910,22 @@ body{
 .album-nav{
   display: none !important;
 }
+/* ==================================================
+   TEK ÇÖZÜM: SOLDaki GEREKSİZ OKLARI KALDIR
+   - Sadece id'si olmayan okları gizler
+   - #album-prev ve #album-next kalır
+   ================================================== */
+
+/* Tüm .album-nav oklarını gizle */
+.album-nav{
+  display: none !important;
+}
+
+/* Ama asıl doğru oklar kalsın */
+#album-prev,
+#album-next{
+  display: inline-flex !important;
+}
 
 
 
