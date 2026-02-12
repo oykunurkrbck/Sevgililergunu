@@ -53,7 +53,7 @@ body{
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  pointer-events: none; /* sadece iç butonlar tıklansın */
+  pointer-events: none;
 }
 
 /* sayaç */
@@ -144,49 +144,170 @@ body{
 .gallery{ display:none; }
 
 /* ===============================
-   ALBÜM OVERLAY (Grid Albüm)
+   ALBÜM OVERLAY (SLIDESHOW)  ✅ (JS’in kullandığı sistem)
+   - Lightbox görünümü
+   - Tek takım ok (prev/next)
+   - Siyah arka plan YOK
 ================================ */
+#album-overlay,
 .album-overlay{
   position: fixed;
   inset: 0;
-  z-index: 80;
+  z-index: 9999;
 
-  background: rgba(253, 246, 240, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .2s ease;
-  overflow: auto;
-  padding: 22px 14px 28px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+  overflow: hidden;
 }
+
+#album-overlay.open,
 .album-overlay.open{
-  opacity: 1;
-  pointer-events: auto;
+  display: flex;
 }
 
+/* Beyaz kart */
+#album-overlay .album-shell,
+.album-overlay .album-shell{
+  position: relative;
+  width: min(980px, 92vw);
+  max-height: 86vh;
+
+  background: rgba(255,255,255,0.96);
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Foto + yazı alanı */
+#album-overlay .album-stage,
+.album-overlay .album-stage{
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Foto (siyahlık kaldırıldı) */
+#album-img,
+#album-overlay #album-img,
+.album-overlay #album-img,
+#album-overlay .album-stage img,
+.album-overlay .album-stage img{
+  display: block;
+  width: 100%;
+  max-height: 68vh;
+  object-fit: contain;
+  border-radius: 16px;
+  background: transparent; /* ✅ siyah yok */
+  margin: 0 auto;
+}
+
+/* Not + sayaç */
+#album-note{
+  width: 100%;
+  margin-top: 12px;
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+#album-count{
+  margin-top: 6px;
+  color: rgba(74,63,58,0.75);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Kapat butonu (X) */
+#album-overlay-close,
 .album-overlay-close{
-  position: sticky;
-  top: 10px;
-  margin-left: auto;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.95);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+
+  cursor: pointer;
+  font-size: 28px;
+  line-height: 1;
+
   display: grid;
   place-items: center;
-
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-
-  background: #fff;
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 20px var(--shadow);
-  cursor: pointer;
-
-  font-size: 26px;
-  line-height: 1;
   color: var(--rose-dark);
 }
 
+/* ✅ Soldaki gereksiz okları KESİN kapat:
+   - id’si olmayan .album-nav butonları görünmez
+   - ama #album-prev/#album-next kalır */
+.album-nav:not(#album-prev):not(#album-next){
+  display: none !important;
+}
+
+/* Prev / Next okları (tek takım) */
+#album-prev,
+#album-next{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
+
+  border: 1px solid rgba(232,160,168,0.55);
+  background: rgba(255,255,255,0.96);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.18);
+
+  display: grid;
+  place-items: center;
+
+  font-size: 46px;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10002;
+}
+
+#album-prev{ left: 18px; }
+#album-next{ right: 18px; }
+
+@media (max-width: 520px){
+  #album-prev,
+  #album-next{
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    font-size: 42px;
+  }
+}
+
+/* ===============================
+   (Opsiyonel) Grid Albüm stilleri
+   Eğer bir gün grid’i açarsan dursun
+================================ */
 .album-section{
   max-width: 1100px;
   margin: 14px auto 0;
@@ -202,7 +323,6 @@ body{
   margin-bottom: 18px;
 }
 
-/* Albüm açıkken grid */
 .album-overlay.open .gallery{
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -226,7 +346,6 @@ body{
   box-shadow: 0 14px 28px var(--shadow);
   cursor: pointer;
 }
-
 .gallery-item img{
   width: 100%;
   height: 260px;
@@ -236,7 +355,6 @@ body{
 @media (max-width: 520px){
   .gallery-item img{ height: 320px; }
 }
-
 .gallery-note-preview{
   position: absolute;
   left: 10px;
@@ -301,7 +419,6 @@ body{
 
 /* ===============================
    LIGHTBOX (Foto tıkla -> büyük)
-   Not: Hem #lightbox hem .lightbox destekli
 ================================ */
 #lightbox,
 .lightbox{
@@ -310,21 +427,17 @@ body{
   z-index: 120;
   background: rgba(0,0,0,0.55);
 
-  /* ORTALAMA GARANTİ */
   display: none;
   align-items: center;
   justify-content: center;
 
   padding: 18px;
 }
-
-/* aktif olunca aç */
 #lightbox.active,
 .lightbox.active{
   display: flex;
 }
 
-/* içerik kutusu (tek kaynak) */
 #lightbox .lightbox-content,
 .lightbox .lightbox-content{
   width: min(980px, 92vw);
@@ -335,13 +448,12 @@ body{
   border: 1px solid rgba(255,255,255,0.25);
   box-shadow: 0 24px 60px rgba(0,0,0,0.25);
 
-  /* ORTALAMA (iç) */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 
-/* resim */
+/* Lightbox resim (buradaki siyah istersen kalsın; albümden ayrı) */
 #lightbox-img,
 #lightbox .lightbox-content img,
 .lightbox .lightbox-content img{
@@ -352,7 +464,6 @@ body{
   display:block;
 }
 
-/* not alanı */
 #lightbox-note,
 .lightbox-note{
   padding: 12px 14px;
@@ -362,7 +473,6 @@ body{
   text-align: center;
 }
 
-/* kapatma butonu */
 #lightbox-close,
 .lightbox-close{
   position: fixed;
@@ -415,7 +525,6 @@ body{
   margin-bottom: 6px;
 }
 
-/* sayı grid */
 .number-grid{
   display: grid;
   grid-template-columns: repeat(5, 58px);
@@ -555,7 +664,6 @@ body{
   color: var(--text-soft);
 }
 
-/* metinle albüm aç butonu varsa */
 .album-text-btn{
   margin-top: 10px;
   font-size: 18px;
@@ -569,240 +677,5 @@ body{
   transform: scale(1.05);
   opacity: 0.85;
 }
-/* =========================
-   ALBÜM ORTALAMA FIX (SAFE)
-   ========================= */
 
-/* Overlay ekranda tam ortalasın */
-#album-overlay.open,
-.album-overlay.open{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Beyaz kutuyu (shell) ortala ve genişliği dengeli yap */
-#album-overlay .album-shell,
-.album-overlay .album-shell{
-  margin: auto !important;
-  width: min(980px, 92vw) !important;
-  max-height: 90vh !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 20px !important;
-}
-
-/* Foto alanını ortala */
-#album-overlay .album-stage,
-.album-overlay .album-stage{
-  width: 100% !important;
-  max-width: 700px !important;
-  margin: 0 auto !important;
-  text-align: center !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* Resmi ortala */
-#album-overlay .album-stage img,
-.album-overlay .album-stage img{
-  display: block !important;
-  margin: 0 auto !important;
-  width: 100% !important;
-  max-height: 70vh !important;
-  object-fit: contain !important;
-}
-
-/* =========================================
-   ALBUM OVERLAY -> LIGHTBOX LOOK (SAFE OVERRIDE)
-   ========================================= */
-
-/* overlay: karart + ortala */
-#album-overlay,
-.album-overlay{
-  position: fixed !important;
-  inset: 0 !important;
-  z-index: 9999 !important;
-  background: rgba(0,0,0,0.55) !important;
-  backdrop-filter: blur(6px) !important;
-  -webkit-backdrop-filter: blur(6px) !important;
-
-  display: none !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  padding: 18px !important;
-  overflow: hidden !important; /* sayfa kaymasın */
-}
-
-/* açıkken görün */
-#album-overlay.open,
-.album-overlay.open{
-  display: flex !important;
-}
-
-/* beyaz kart */
-#album-overlay .album-shell,
-.album-overlay .album-shell{
-  position: relative !important;
-  width: min(980px, 92vw) !important;
-  max-height: 86vh !important;
-
-  background: rgba(255,255,255,0.96) !important;
-  border-radius: 22px !important;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.25) !important;
-
-  padding: 18px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0 !important;
-}
-
-/* foto + yazı alanı */
-#album-overlay .album-stage,
-.album-overlay .album-stage{
-  width: 100% !important;
-  max-width: 760px !important;
-  margin: 0 auto !important;
-
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-align: center !important;
-}
-
-/* foto */
-#album-overlay #album-img,
-.album-overlay #album-img,
-#album-overlay .album-stage img,
-.album-overlay .album-stage img{
-  display: block !important;
-  width: 100% !important;
-  max-height: 68vh !important;
-  object-fit: contain !important;
-  border-radius: 16px !important;
-  background: #000 !important;
-}
-
-/* alt yazı (not) */
-#album-overlay #album-note,
-.album-overlay #album-note{
-  width: 100% !important;
-  margin-top: 12px !important;
-  color: #4a3f3a !important;
-  font-size: 16px !important;
-  line-height: 1.5 !important;
-}
-
-/* sayaç (21 / 24) */
-#album-overlay #album-count,
-.album-overlay #album-count{
-  margin-top: 6px !important;
-  color: rgba(74,63,58,0.75) !important;
-  font-size: 14px !important;
-}
-
-/* X butonu: kartın sağ üstünde */
-#album-overlay-close,
-.album-overlay-close{
-  position: absolute !important;
-  top: 14px !important;
-  right: 14px !important;
-
-  width: 46px !important;
-  height: 46px !im
-/* =========================================
-   ALBUM LIGHTBOX - ÇİZGİLERİ KALDIR + OKLARI BÜYÜT
-   ========================================= */
-
-/* Resim alanının siyah arka planını kaldır (yan çizgiler gitsin) */
-#album-overlay #album-img,
-.album-overlay #album-img,
-#album-overlay .album-stage img,
-.album-overlay .album-stage img{
-  background: transparent !important;   /* siyah alanı kaldır */
-}
-
-/* Kart içindeki boşlukları biraz sıkılaştır */
-#album-overlay .album-shell,
-.album-overlay .album-shell{
-  padding: 16px !important;
-}
-
-#album-overlay .album-stage,
-.album-overlay .album-stage{
-  max-width: 820px !important;
-}
-/* album-overlay dışında kalan tüm okları kapat */
-body > .album-nav,
-body > button.album-nav{
-  display: none !important;
-}/* =========================================
-   KESİN ÇÖZÜM:
-   Albüm overlay içindeki tüm butonları kapat,
-   sadece X + prev + next kalsın.
-   + Resim arkasındaki siyahlığı kaldır.
-   ========================================= */
-
-/* 1) Albüm overlay içindeki TÜM butonları kapat */
-#album-overlay button{
-  display: none !important;
-}
-
-/* 2) Sadece gerekli 3 butonu geri aç */
-#album-overlay #album-overlay-close{
-  display: grid !important;
-  place-items: center !important;
-}
-
-#album-overlay #album-prev,
-#album-overlay #album-next{
-  display: grid !important;
-  place-items: center !important;
-
-  position: absolute !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-
-  width: 72px !important;
-  height: 72px !important;
-  border-radius: 22px !important;
-
-  background: rgba(255,255,255,0.96) !important;
-  border: 1px solid rgba(232,160,168,0.55) !important;
-  box-shadow: 0 16px 34px rgba(0,0,0,0.18) !important;
-
-  font-size: 46px !important;
-  font-weight: 900 !important;
-  line-height: 1 !important;
-  cursor: pointer !important;
-  z-index: 10002 !important;
-}
-
-#album-overlay #album-prev{ left: 18px !important; }
-#album-overlay #album-next{ right: 18px !important; }
-
-/* 3) Resim arkasındaki siyahlığı KESİN kaldır */
-#album-overlay #album-img,
-#album-overlay img{
-  background: transparent !important;
-}
-
-/* Mobil */
-@media (max-width: 520px){
-  #album-overlay #album-prev,
-  #album-overlay #album-next{
-    width: 60px !important;
-    height: 60px !important;
-    border-radius: 18px !important;
-    font-size: 42px !important;
-  }
-}
 
