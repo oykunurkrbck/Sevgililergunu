@@ -927,6 +927,29 @@ body{
   display: inline-flex !important;
 }
 
+/* =========================================
+   FINAL FIX (ÖZELLİK KAYBETMEDEN)
+   - Soldaki gereksiz okları kapat
+   - Doğru okları bırak
+   - Resim arkasındaki siyahlığı kaldır
+   ========================================= */
+
+/* Solda çıkan ekstra oklar (id'siz) */
+.album-nav:not(#album-prev):not(#album-next){
+  display: none !important;
+}
+
+/* Asıl oklar kalsın */
+#album-prev, #album-next{
+  display: grid !important;
+}
+
+/* Resmin arkasındaki siyah alanı kaldır */
+#album-img{
+  background: transparent !important;
+}
+
+
 
 
 
