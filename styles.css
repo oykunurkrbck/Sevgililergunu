@@ -677,5 +677,11 @@ body{
   transform: scale(1.05);
   opacity: 0.85;
 }
+/* SADECE ALBÜM KARTININ İÇİNDEKİ OKLARI KALDIR */
+#album-overlay .album-shell #album-prev,
+#album-overlay .album-shell #album-next{
+  display: none !important;
+}
+
 
 
