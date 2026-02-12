@@ -8,7 +8,7 @@ const BIRLIKTE_BASLANGIC = new Date(2021, 0, 18); // 18 Ocak 2021
 
 document.addEventListener('DOMContentLoaded', function () {
   // =====================================================
-  // 1) Gün sayacı
+  // 1) Gün say acı
   // =====================================================
   function guncelleGunSayaci() {
     const baslangic = new Date(BIRLIKTE_BASLANGIC);
