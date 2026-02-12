@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { title: '3', content: 'Bu yaz yaptığımız tatil mükemmel ötesiydi' },
     { title: '4', content: 'Her kararımda danıştığım ilk insansın' },
     { title: '5', content: 'Sana ilk ne zaman güvendim bilmiyorum amaaa o günden beri yanındayken evimde hissediyorum.' },
-    { title: '6', content: 'Ada tatilinde sarhoş olup uyumama rağmen beni tatlı tatlı öpüp hiç kızmaman ahahah seni yerim.' },
+    { title: '6', content: 'Seninle uyumak dünyanın en rahat uykusu.' },
     { title: '7', content: 'Seni neden seviyorum bilmiyorum amaa seninle olmayı neden çok sevdiğimi biliyorum: her koşulda günümü bir şekilde güzelleştirebildiğin ve daha tonla sayabileceğim nedenden' },
     { title: '8', content: 'En yakın arkadaşım olduğun için teşekkür ederim sevgilim' },
     { title: '9', content: 'Bana telefonla konuşmayı sevdirdin artık her şey için seni arıyorum yakalandın hahahsh' },
@@ -354,8 +354,8 @@ document.addEventListener('DOMContentLoaded', function () {
     { title: '20', content: 'Hep böyle kalalım, hep çok mutlu olamayız ama mutlu olduğumuz hiçbir anı unutmayalım' },
     { title: '21', content: 'Beraber okuduk, beraber çalıştık, beraber mezun olduk… daha nice güzel başarılarımıza sevgilim' },
     { title: '22', content: 'Sen ve ben, birlikte. Takımız. Artık "ben" değil "biz" diye düşünmek en güzel his.' },
-    { title: '23', content: 'Seni çoooooooooooook seviyorum' },
-    { title: '24', content: 'İyi ki o kulübe girmişsin, iyi ki her şeyi göze aldık, iyi ki barıştık, iyi ki hayatımdasın...' },
+    { title: '23', content: 'İyi ki o kulübe girmişsin, iyi ki her şeyi göze aldık, iyi ki barıştık, iyi ki hayatımdasın... ' },
+    { title: '24', content: 'Seni çoooooooooooook seviyorum' },
     { title: '__FAV5__', content: '' }
   ];
 
