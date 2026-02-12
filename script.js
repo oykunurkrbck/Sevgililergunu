@@ -110,8 +110,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const note = item.getAttribute('data-note') || '';
     if (img) {
       item.addEventListener('click', function () {
-        // Unsplash paramlarını büyüt (kendi fotoğrafında da sorun olmaz)
-        const bigSrc = img.src.replace(/&w=\d+&h=\d+/, '&w=800&h=800');
+        const src = img.src || '';
+        // Unsplash paramlarını büyütmeye çalış; yoksa aynen bırak
+        const bigSrc = src.includes('&w=') ? src.replace(/&w=\d+&h=\d+/, '&w=800&h=800') : src;
         lightboxAc(bigSrc, note);
       });
     }
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { content: 'Ada tatilinde sarhoş olup uyumama rağmen beni ttlı tatlı öpüp hiç kızmaman ahahah seni yerim.' },
     { content: 'Seni neden seviyorum bilmiyorum amaa seninle olmayı neden çok sevdiğimi biliyorum: her koşulda günümü bir şekilde güzelleştirebildiğin ve daha tonla sayabileceğim nedenden' },
     { content: 'En yakın arkadaşım olduğun için teşekkür ederim sevgilim' },
-    { content: 'Bana telefonla konuşmayı sevdirdin artık her şey için seni arıyorum yakalandın hahahsh },
+    { content: 'Bana telefonla konuşmayı sevdirdin artık her şey için seni arıyorum yakalandın hahahsh' },
     { content: 'Ne yaşarsak yaşayalım sarıldığımızda her şeyin çözüleceğini bilmek dünyadaki en güzel hislerde biri' },
     { content: 'İlk doğum günümde benden ayrılıp sonra barışma fikrine çok sinirlensem de şimdi bakınca çok komik geliyor' },
     { content: 'Sana her gelme dediğimde iyi ki geldin sevgilim ve her zamanki gibi bana çok iyi geldin.' },
@@ -152,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { content: 'Sen ve ben, birlikte. Takımız. Artık "ben" değil "biz" diye düşünmek en güzel his.' },
     { content: 'Seni çoooooooooooook seviyorum' },
     { content: 'İyi ki o kulübe girmişsin, iyi ki her şeyi göze aldık, iyi ki barıştık,iyi ki hayatımdasın...' },
-  { title: '__FAV5__', content: '' }
+    { title: '__FAV5__', content: '' }
   ];
 
   const heartsWrap = document.getElementById('fav5-hearts');
@@ -200,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // 6) En alttaki gizli mesaj alanı
+  // 6) En alttaki gizli mesaj alanı (sayfada yoksa sorun değil)
   const secretWrap = document.getElementById('secret-message');
   const secretToggle = document.getElementById('secret-toggle');
   if (secretWrap && secretToggle) {
@@ -239,21 +240,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (!startBtn || !overlay || !titleEl || !contentEl) return;
 
-  
-    const QUIZ = [
-  { q: "1) Benim yükselenim ne?" },
-  { q: "2) Benim köyümün adı ne?" },
-  { q: "3) Keşke sana bunu yaşatmasaydım dediğin bir an var mı?" },
-  { q: "4) Birlikte ne yapmayı en çok seviyorum?" },
-  { q: "5) Beni en çok sinirlendiren şey ne?" },
-  { q: "6) İlk buluşmamızda ne giymiştim?" },
-  { q: "7) Hangi mevsimi en çok severim?" },
-  { q: "8) Eğer değiştirebilseydin hangi özelliğimindeğiştirmek isterdin?" },
-  { q: "9) Benimle ilgili sevdiğin bir özellik söyle?" },
-  { q: "10) Çoooook mu? Çooooooooooooooook mu?" }
-];
-
-
+  const QUIZ = [
+    { q: "1) Benim yükselenim ne?" },
+    { q: "2) Benim köyümün adı ne?" },
+    { q: "3) Keşke sana bunu yaşatmasaydım dediğin bir an var mı?" },
+    { q: "4) Birlikte ne yapmayı en çok seviyorum?" },
+    { q: "5) Beni en çok sinirlendiren şey ne?" },
+    { q: "6) İlk buluşmamızda ne giymiştim?" },
+    { q: "7) Hangi mevsimi en çok severim?" },
+    { q: "8) Eğer değiştirebilseydin hangi özelliğimi değiştirmek isterdin?" },
+    { q: "9) Benimle ilgili sevdiğin bir özellik söyle?" },
+    { q: "10) Çoooook mu? Çooooooooooooooook mu?" }
+  ];
 
   let i = 0;
 
@@ -299,8 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
           openPopup(QUIZ[i].q, QUIZ[i].a);
         } else {
           titleEl.textContent = "Bitti 💗";
-          contentEl.innerHTML = `
-          `;
+          contentEl.innerHTML = ``;
         }
       });
     }
