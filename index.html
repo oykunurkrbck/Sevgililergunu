@@ -1,38 +1,120 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Öykü 💖 Ercan</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="pictures/Orta7.jpeg" type="image/x-icon" />
+
+  <title>Öykü 💖 Ercan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <div class="bg-pattern"></div>
 
-<div class="top-left-bar">
-  <button class="album-icon-btn" id="album-icon-btn">Albüm 💗</button>
-</div>
-
-<header class="hero">
-  <h1>Öykü 💖 Ercan</h1>
-</header>
-
-<!-- ALBÜM -->
-<div class="album-overlay" id="album-overlay">
-  <button class="album-close" id="album-close">×</button>
-
-  <div class="album-slider">
-    <button class="album-nav" id="album-prev">‹</button>
-
-    <div class="album-content">
-      <img id="album-img" src="pictures/Orta1.jpeg">
-      <p id="album-note"></p>
+  <!-- Sol üst: Gün sayacı + Albüm + Müzik -->
+  <div class="top-left-bar">
+    <div class="counter-box counter-fixed">
+      <span class="counter-number" id="days">0</span>
+      <span class="counter-label">gündür birlikteyiz</span>
     </div>
 
-    <button class="album-nav" id="album-next">›</button>
-  </div>
-</div>
+    <button class="album-icon-btn" id="album-icon-btn" aria-label="Albümü aç" title="Foto albümümüzü aç">
+      <svg class="album-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+        <polyline points="21 15 16 10 5 21"></polyline>
+      </svg>
+      <span class="album-icon-label">Albüm</span>
+    </button>
 
-<script src="script.js"></script>
+    <!-- Müzik audio -->
+    <audio id="bg-music" loop>
+      <source src="music/Yalın - Sevgili Kalp Sancım.mp3" type="audio/mpeg" />
+    </audio>
+  </div>
+
+  <header class="hero">
+    <h1>Öykü 💖 Ercan</h1>
+  </header>
+
+  <!-- ALBÜM SLIDER OVERLAY -->
+  <div class="album-slider-overlay" id="album-slider-overlay" aria-hidden="true">
+    <button class="album-slider-close" id="album-slider-close" aria-label="Albümü kapat">&times;</button>
+
+    <div class="album-slider-shell">
+      <button class="album-slider-nav left" id="album-slider-prev" type="button" aria-label="Önceki">‹</button>
+
+      <div class="album-slider-content" id="album-slider-content">
+        <img id="album-slider-img" src="" alt="Anımız" />
+        <p id="album-slider-note"></p>
+      </div>
+
+      <button class="album-slider-nav right" id="album-slider-next" type="button" aria-label="Sonraki">›</button>
+    </div>
+
+    <div class="album-slider-counter" id="album-slider-counter">1 / 24</div>
+  </div>
+
+  <!-- Müzik Butonu -->
+  <button class="music-btn" id="music-btn" aria-label="Müzik" title="Müziği aç/kapat">💗</button>
+  <div class="music-note" id="music-note">Bu şarkı çalınca hep bizi düşünüyorum 💗</div>
+
+  <!-- QA + Quiz yanyana -->
+  <div class="qa-quiz-row">
+    <section class="section qa-section" id="qa">
+      <h2>Bir sayı seç</h2>
+      <p class="section-desc">Anılarımız ❤️</p>
+      <div class="number-grid" id="number-grid"></div>
+    </section>
+
+    <section class="section quiz-intro-section" id="quiz-intro">
+      <div class="quiz-intro-card">
+        <h2 class="quiz-intro-title">Senin için bir quiz hazırladım…</h2>
+        <p class="quiz-intro-sub">Hazır mısın? 💗</p>
+        <button class="quiz-start-btn" id="quiz-start-btn" type="button">Başla</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- 26'ya basınca açılacak 5 kalp -->
+  <section class="section fav5-section" id="fav5">
+    <div class="fav5-hearts" id="fav5-hearts" aria-hidden="true">
+      <button class="fav5-heart-btn" type="button" data-title="Sarılışın"
+        data-text="Sen sarıldığında her şey duruyor, tüm dertler sıfırlanıyor.">💗</button>
+
+      <button class="fav5-heart-btn" type="button" data-title="Beni sevme şeklin"
+        data-text="Sanki dünyadaki en değerli insamışım gibi değerli hissettiriyor">💗</button>
+
+      <button class="fav5-heart-btn" type="button" data-title="Her zaman yanımda oluşun"
+        data-text="Ne yaparsam yapayım arkamda olduğunu bilmek,desteğini hissetmek o kadar güzel ki">💗</button>
+
+      <button class="fav5-heart-btn" type="button" data-title="İnce düşünmen"
+        data-text="Hiç aklıma gelmeyen anlarda yaptığın tatlışlıklar">💗</button>
+
+      <button class="fav5-heart-btn" type="button" data-title="Evim gibi hissettirişin"
+        data-text="Yanında olduğumda hissettiğim güven… evim gibi.">💗</button>
+    </div>
+  </section>
+
+  <!-- Ortak Popup -->
+  <div class="qa-card-overlay" id="qa-card-overlay">
+    <div class="qa-card" id="qa-card">
+      <button class="qa-card-close" id="qa-card-close" aria-label="Kapat">&times;</button>
+      <h3 class="qa-card-title" id="qa-card-title"></h3>
+      <p class="qa-card-content" id="qa-card-content"></p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Umarım beğenirsin, Seni çok seviyorum</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
