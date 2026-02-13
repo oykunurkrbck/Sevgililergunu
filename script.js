@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
     { content: "Sana her gelme dediğimde iyi ki geldin sevgilim ve her zamanki gibi bana çok iyi geldin." },
     { content: "Albüme bakınca ne çok ilkler var değil mi… daha beraber yaşayacağımız çok ilk var, hepsi için sabırsızlanıyorum" },
     { content: "Futbol maçında sakatlanmanı unutamayacağım, yaşlı dedeler gibiydin" },
-    { content: "Son kutladığımız sevgililer gününde çiçek almaya yetişememen ve sonra gidip almana kızdığım için özür dilerim… çok güzellerdi." },
+    { content: "Son kutladığımız sevgililer gününde çiçek almaya yetişememen ve sonra gidip alman trajikomikti. Umarım bu sene unutmamışsındır." },
     { content: "Bizim için çabalarını görüyorum sevgilim, yoksaydığım zamanlarda da biliyorum. Hepsi için özür dilerim." },
     { content: "Yapıcam dediğin her şeyi yapmana bayılıyorum" },
     { content: "Kütüphanede ders çalışmalarımızı, Yıldız’ı ve o zamanlarımızı çok özledim." },
