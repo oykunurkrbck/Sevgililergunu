@@ -253,12 +253,12 @@ document.addEventListener("DOMContentLoaded", function () {
     { q: "1) Benim yükselenim ne?" },
     { q: "2) Benim köyümün adı ne?" },
     { q: "3) Keşke sana bunu yaşatmasaydım dediğin bir an var mı?" },
-    { q: "4) Birlikte ne yapmayı en çok seviyorum?" },
-    { q: "5) Beni en çok sinirlendiren şey ne?" },
-    { q: "6) İlk buluşmamızda ne giymiştim?" },
-    { q: "7) Hangi mevsimi en çok severim?" },
+    { q: "4) Birlikte yapmayı en çok sevdiğin şey ne?" },
+    { q: "5) Benim hangi huyum seni hem sinir edip hem güldürüyor?" },
+    { q: "6) Birlikte en mutlu hissettiğin an hangisiydi?" },
+    { q: "7) İlişkimizde en çok değer verdiğin şey ne?" },
     { q: "8) Eğer değiştirebilseydin hangi özelliğimi değiştirmek isterdin?" },
-    { q: "9) Benimle ilgili sevdiğin bir özellik söyle?" },
+    { q: "9) Sana aldığım en sevdiğin hediye hangisi?" },
     { q: "10) Çoooook mu? Çooooooooooooooook mu? Beni ne kadar seviyorsun?" },
   ];
 
